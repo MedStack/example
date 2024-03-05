@@ -17,6 +17,8 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
         with:
-          channel-id: "changelog-raw"
-          slack-message: "From: ${{ github.actor }}\n:gift: ${{ github.event.pull_request.title }}\n${{ github.event.pull_request.html_url }}"
+          payload: |
+            {
+                "text": "From: ${{ github.actor }}\n:gift: ${{ github.event.pull_request.title }}\n${{ github.event.pull_request.html_url }}"
+            }
         uses: slackapi/slack-github-action@v1.25.0
