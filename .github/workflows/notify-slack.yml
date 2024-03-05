@@ -1,10 +1,6 @@
 name: Notify Slack on merged pull requests
 
 on:
-  push:
-    branches:    
-      - master
-      - test
   pull_request:
     types:
       - closed
@@ -25,20 +21,6 @@ jobs:
           channel-id: 'C01KYA95GFK'
           payload: |
             {
-                "text": "TEST",
-                "attachments": [
-                {
-                    "pretext": "test",
-                    "color": "dbab09",
-                    "fields": [
-                    {
-                        "title": "Status",
-                        "short": true,
-                        "value": "In Progress"
-                    }
-                    ]
-                }
-                ]
+                "text": "${{ github.event.pull_request }}"
             }
         uses: slackapi/slack-github-action@v1.25.0
-
