@@ -6,7 +6,6 @@ on:
       - closed
     branches:    
       - master
-      - test
 
 jobs:
   notify_merged_pull_request:
@@ -21,6 +20,6 @@ jobs:
           channel-id: 'C06MWT61KEZ'
           payload: |
             {
-                "text": ":gift: ${{ github.event.pull_request.title }}\n${{ github.event.pull_request.html_url }}"
+                "text": "From: ${{ github.actor }}\n:gift: ${{ github.event.pull_request.title }}\n${{ github.event.pull_request.html_url }}"
             }
         uses: slackapi/slack-github-action@v1.25.0
