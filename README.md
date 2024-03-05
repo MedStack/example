@@ -1,4 +1,4 @@
 # example
 
-This is a test
+This is the README
 
