@@ -1,0 +1,28 @@
+name: Notify Slack on merged pull requests
+
+on:
+  push:
+    branches:    
+      - master
+      - test
+  pull_request:
+    types:
+      - closed
+    branches:    
+      - master
+      - test
+
+jobs:
+  notify_merged_pull_request:
+    name: Notify Slack on merged pull requests
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
+    steps:
+      - env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        with:
+          channel-id: 'C01KYA95GFK'
+          slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+        uses: slackapi/slack-github-action@v1.25.0
+
