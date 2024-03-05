@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:    
-      - main
+      - master
 
 jobs:
   notify_merged_pull_request:
